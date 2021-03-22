@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: poi-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: poi-api
+  template:
+    metadata:
+      labels:
+        app: poi-api
+    spec:
+      containers:
+      - name: poi-api
+        image: registrygwk8069.azurecr.io/tripinsights/poi:1.0
+        env:
+          - name: SQL_USER
+            value: "sqladmingWk8069"
+          - name: SQL_PASSWORD
+            value: "P@ssw0rd"
+          - name: SQL_SERVER
+            value: "sqlservergwk8069.database.windows.net"
+          - name: ASPNETCORE_ENVIRONMENT
+            value: "Development"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 8080
