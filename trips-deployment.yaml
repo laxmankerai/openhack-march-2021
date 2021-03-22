@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: poi-api
+  name: trips-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: poi-api
+      app: trips-api
   template:
     metadata:
       labels:
-        app: poi-api
+        app: trips-api
     spec:
       containers:
-      - name: poi-api
-        image: registryopq8736.azurecr.io/poi:1.0
+      - name: trips-api
+        image: registryopq8736.azurecr.io/trips:1.0
         env:
           - name: SQL_USER
             value: "sqladminoPq8736"
